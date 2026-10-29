@@ -10,6 +10,23 @@ from scripts import report_vlm
 
 
 class ComparisonTests(unittest.TestCase):
+    def test_small_memory_float32_fails_before_model_loading(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "samples").mkdir()
+            (root / "samples/manifest.json").write_text(json.dumps({"clips": [{"id": "a"}]}))
+            for name in ("scripts/compare_vlm.py", "app/sampling.py", "app/core.py"):
+                path = root / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("test fixture")
+            with patch.object(compare_vlm, "ROOT", root), patch.object(compare_vlm, "memory_limit_bytes", return_value=8 * 1024**3), patch("sys.argv", ["compare_vlm.py", "--run-id", "limited", "--dtype", "float32"]):
+                with self.assertRaises(MemoryError):
+                    compare_vlm.main()
+            record = json.loads((root / "experiments/limited/run.json").read_text())
+            self.assertEqual(record["status"], "failed")
+            self.assertEqual(record["completed_inferences"], 0)
+            self.assertFalse((root / "experiments/limited/summary.json").exists())
+
     def test_evidence_path_cannot_leave_run_folder(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)

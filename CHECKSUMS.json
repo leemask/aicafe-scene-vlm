@@ -6,7 +6,7 @@
   "LICENSE": "2b62a93977e7453bb601c127c58b01a6d11090ab4534a996a69de85d54053576",
   "README.md": "dc28c656d2016151c179084a53dd282cef633dc6805f7dcb28692e4661c31d56",
   "THIRD_PARTY.md": "c6ff85978ef1a3e13ec3b5d8964326f7c9810f62a5e98f0122d6f6a7a1f345e2",
-  "VERIFICATION.md": "c717504424712ebd31233b21698922ec55eb7d919e15a357936a222507130548",
+  "VERIFICATION.md": "f460fcd6970ff56c0cc0bc603136078369dd3e281fcf9f2ef21b925267c376fe",
   "app/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
   "app/core.py": "578aefe94354bbb57776876100756d45cc2f38dbab995904c941a592985ba924",
   "app/server.py": "6279499f7bd8f37d7b76081e7cb9cd3683946c03228b869fa620ba72088f623f",
@@ -513,5 +513,14 @@
   "experiments/sampling-v1-20261029-01/clip-029.json": "188d57500d1819054369f5cfc53fbe1f6356b12a346945142123cd3cf69d998c",
   "experiments/sampling-v1-20261029-01/clip-056.json": "3e75f468856873acaf2819e6583338aea2f1cda32a407a01f9ee177dae68a20e",
   "experiments/sampling-v1-20261029-01/clip-046.json": "98dd4abb8cf3f0ab58feda6d52e5761c5374a50272a913e832da9d9f001afd3e",
-  "experiments/sampling-v1-20261029-01/clip-053.json": "d419ffe754079c0af156a0baea2d8f51acdd39ca08458fa19d139ef8c9ae2803"
+  "experiments/sampling-v1-20261029-01/clip-053.json": "d419ffe754079c0af156a0baea2d8f51acdd39ca08458fa19d139ef8c9ae2803",
+  "reports/vlm_attempt_validation.json": "520546a0c03a55305883f1536c21a614294b34c6ff46b6f3186670e6e57453bc",
+  "VLM_COMPARISON.md": "4bb712bfa7e84737229a9105c1c81a3ea6a78801a62bbaa4d30ddc50a2c7d485",
+  "tests/test_compare_vlm.py": "af7fb8898cc9ae55eb8862bb93eb05bbd5d02b12a0f76430d8cd338b41a6a00e",
+  "scripts/compare_vlm.py": "b49783462a3315dc9af0b032a17df5cc229dc89be2d8adf22fa6df784b9b262e",
+  "scripts/report_vlm.py": "729cab7696ab516ccc4195dd751b4c3e332245cb3583eb99635ab95aecf0f746",
+  "experiments/vlm-paired-20261030-fp32/run.json": "a2cd1832faade1b82ae22be067ee8a1f0b664a38334a8d20a39815345f2e718f",
+  "experiments/vlm-paired-20261030-01/run.json": "d3e2e238a723437f112f14a10bda47f11b22cb4aa1b117d660e50a40392b142a",
+  "experiments/vlm-paired-20261030-int8/run.json": "d33b560e5883dbb276040b99aff20812474a562dc9e2482eb4b4e2e1b4ef8e8c",
+  "experiments/vlm-paired-20261030-bf16-b1/run.json": "b4fff8a1aaf4d445f38661055ac6996f99fc0a4bbea12baa7f13d83870e31eed"
 }

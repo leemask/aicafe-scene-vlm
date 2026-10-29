@@ -36,6 +36,42 @@ def available_max(values):
     return max((v for v in values if v is not None), default=None)
 
 
+def memory_limit_bytes():
+    try:
+        value = Path("/sys/fs/cgroup/memory.max").read_text().strip()
+        return int(value) if value != "max" else None
+    except (OSError, ValueError):
+        return None
+
+
+def quantize_text_linear_layers(engine):
+    """Convert one linear layer at a time to avoid an 8+ GiB float32 model copy."""
+    import torch
+    from torch import nn
+    torch.backends.quantized.engine = "fbgemm"
+    converted = 0
+
+    def visit(parent):
+        nonlocal converted
+        for name, child in list(parent.named_children()):
+            if isinstance(child, nn.Linear):
+                wrapper = nn.Sequential(child.float())
+                quantized = torch.ao.quantization.quantize_dynamic(
+                    wrapper, {nn.Linear}, dtype=torch.qint8, inplace=True)[0]
+                setattr(parent, name, quantized)
+                converted += 1
+            else:
+                visit(child)
+
+    visit(engine.model.language_model.layers)
+    head = nn.Sequential(engine.lm_head.float())
+    engine.lm_head = torch.ao.quantization.quantize_dynamic(
+        head, {nn.Linear}, dtype=torch.qint8, inplace=True)[0]
+    # Remaining vision/embedding/norm operations use native float32 CPU math.
+    engine.float()
+    return converted + 1
+
+
 def sha256(path):
     digest = hashlib.sha256()
     with Path(path).open("rb") as stream:
@@ -70,6 +106,7 @@ def main():
     parser.add_argument("--ids", help="Optional comma-separated diagnostic subset; default all clips")
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--threads", type=int, default=8)
+    parser.add_argument("--dtype", choices=["bfloat16", "float32", "int8-dynamic"], default="bfloat16")
     args = parser.parse_args()
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}", args.run_id):
         parser.error("Invalid run ID")
@@ -84,7 +121,7 @@ def main():
         "status": "preparing", "model": MODEL, "revision": REVISION,
         "clip_ids": [c["id"] for c in clips], "modes": MODES,
         "batch_size": args.batch_size, "threads": args.threads,
-        "dtype": "bfloat16", "device": "cpu", "attention": "sdpa",
+        "dtype": args.dtype, "device": "cpu", "attention": "sdpa",
         "max_image_size": [576, 324], "max_new_tokens": 260,
         "do_sample": False, "padding_side": "left", "seed": 0,
         "prompt": INSTRUCTION,
@@ -92,11 +129,14 @@ def main():
         "code_sha256": {p: sha256(ROOT / p) for p in
                         ("scripts/compare_vlm.py", "app/sampling.py", "app/core.py")},
         "python": platform.python_version(), "completed_inferences": 0,
+        "memory_limit_bytes": memory_limit_bytes(),
         "evaluation_note": "Outputs and category changes are not accuracy. Human review required.",
     }
     atomic_json(folder / "run.json", config)
     run_started = time.perf_counter()
     try:
+        if args.dtype == "float32" and config["memory_limit_bytes"] is not None and config["memory_limit_bytes"] < 10 * 1024**3:
+            raise MemoryError("float32 run requires more memory than this environment provides; use a larger environment")
         import torch
         from huggingface_hub import snapshot_download
         from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
@@ -112,8 +152,12 @@ def main():
         processor = AutoProcessor.from_pretrained(model_path, local_files_only=True)
         processor.tokenizer.padding_side = "left"
         engine = Qwen3VLForConditionalGeneration.from_pretrained(
-            model_path, local_files_only=True, dtype=torch.bfloat16,
+            model_path, local_files_only=True,
+            dtype=torch.bfloat16 if args.dtype == "int8-dynamic" else getattr(torch, args.dtype),
             attn_implementation="sdpa").eval()
+        if args.dtype == "int8-dynamic":
+            config["quantized_linear_layers"] = quantize_text_linear_layers(engine)
+            config["quantization"] = "dynamic qint8 text decoder linears and lm_head; float32 elsewhere; fbgemm"
         config["model_load_seconds"] = time.perf_counter() - started
         config["status"] = "running"
         atomic_json(folder / "run.json", config)
