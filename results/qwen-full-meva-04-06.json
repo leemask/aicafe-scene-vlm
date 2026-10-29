@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-04-06",
+  "clip_id": "meva-04-06",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-29T05:49:00.968074+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "자전거가 있는 도로에서 자전거를 타고 있는 사람",
+      "evidence": "도로에 자전거가 있는 사람",
+      "limitations": "자전거의 상태와 타이밍이 확인되지 않음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"자전거가 있는 도로에서 자전거를 타고 있는 사람\",\n  \"evidence\": \"도로에 자전거가 있는 사람\",\n  \"limitations\": \"자전거의 상태와 타이밍이 확인되지 않음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/results/qwen-full-meva-04-06/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 2.0,
+          "file": "/results/qwen-full-meva-04-06/frame-0.jpg"
+        },
+        {
+          "time": 6.0,
+          "file": "/results/qwen-full-meva-04-06/frame-1.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-04-06/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 10.426,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 41.703,
+      "batch_size": 4,
+      "batch_id": "full-meva-04-05"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "d2f8df38d1db943706edfde72cfb8cd487f62c69fda04ae72d4f75f7c475f8d6"
+}

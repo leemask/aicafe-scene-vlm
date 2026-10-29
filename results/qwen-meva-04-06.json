@@ -1,0 +1,43 @@
+{
+  "id": "qwen-meva-04-06",
+  "clip_id": "meva-04-06",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-27T15:22:44.884860+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "자전거가 있는 도로에서 자전거를 타고 있는 사람",
+      "evidence": "자전거가 있는 도로에서 자전거를 타고 있는 사람",
+      "limitations": "자전거의 존재를 확인할 수 없음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"자전거가 있는 도로에서 자전거를 타고 있는 사람\",\n  \"evidence\": \"자전거가 있는 도로에서 자전거를 타고 있는 사람\",\n  \"limitations\": \"자전거의 존재를 확인할 수 없음\"\n}",
+      "inference_seconds": 30.774,
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/samples/meva-04-06.jpg"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "3 frames per clip; 576px maximum model input. Ground truth and filenames excluded. Predicted category is not confirmed truth.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 4,
+    "max_new_tokens": 260,
+    "sampling": false
+  }
+}

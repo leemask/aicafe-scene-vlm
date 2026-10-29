@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-07-01",
+  "clip_id": "meva-07-01",
+  "status": "completed",
+  "duration": 20.0,
+  "created_at": "2026-10-29T05:51:30.103338+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "entry_exit",
+      "summary_ko": "사람이 건물의 입구에서 나가고 있다.",
+      "evidence": "입구에서 사람의 실루엣이 보이며, 입구가 열려 있는 상태.",
+      "limitations": "사람의 정확한 움직임은 확인되지 않음.",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"entry_exit\",\n  \"summary_ko\": \"사람이 건물의 입구에서 나가고 있다.\",\n  \"evidence\": \"입구에서 사람의 실루엣이 보이며, 입구가 열려 있는 상태.\",\n  \"limitations\": \"사람의 정확한 움직임은 확인되지 않음.\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 20.0,
+      "thumbnail": "/results/qwen-full-meva-07-01/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 3.333,
+          "file": "/results/qwen-full-meva-07-01/frame-0.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-07-01/frame-1.jpg"
+        },
+        {
+          "time": 16.667,
+          "file": "/results/qwen-full-meva-07-01/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        3.333,
+        10.0,
+        16.667
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 12.861,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 51.443,
+      "batch_size": 4,
+      "batch_id": "full-meva-07-01"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 20.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "53e7df1db3a88e51445f23e8605d7cc70a4a64ea172e949241b88b9855f58463"
+}

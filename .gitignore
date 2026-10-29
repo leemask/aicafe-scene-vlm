@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env
+.env.*
+!.env.example
+data/
+models/
+model/
+.cache/
+*.safetensors
+*.pt
+*.pth
+*.partial
+*.part
+update-backups/
+# Preserve distributed qwen baseline results; ignore new interactive jobs.
+results/job-*

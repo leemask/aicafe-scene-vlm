@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-12-02",
+  "clip_id": "meva-12-02",
+  "status": "completed",
+  "duration": 20.0,
+  "created_at": "2026-10-29T05:55:17.881220+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "사람들이 복도에서 물건을 나누고 있는 모습",
+      "evidence": "복도 안에서 사람들이 테이블에 있는 물건을 나누고 있는 모습",
+      "limitations": "사람들의 행동이 정확히 무엇을 하고 있는지 확인되지 않음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"사람들이 복도에서 물건을 나누고 있는 모습\",\n  \"evidence\": \"복도 안에서 사람들이 테이블에 있는 물건을 나누고 있는 모습\",\n  \"limitations\": \"사람들의 행동이 정확히 무엇을 하고 있는지 확인되지 않음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 20.0,
+      "thumbnail": "/results/qwen-full-meva-12-02/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 3.333,
+          "file": "/results/qwen-full-meva-12-02/frame-0.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-12-02/frame-1.jpg"
+        },
+        {
+          "time": 16.667,
+          "file": "/results/qwen-full-meva-12-02/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        3.333,
+        10.0,
+        16.667
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 11.562,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 46.25,
+      "batch_size": 4,
+      "batch_id": "full-meva-12-01"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 20.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "e6ad91cba6fe2cf75edaeaa39089036a2bae4b5c63f1871afe32d443d1d109f2"
+}

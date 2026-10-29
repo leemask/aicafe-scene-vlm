@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-01-08",
+  "clip_id": "meva-01-08",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-29T05:44:14.365960+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "entry_exit",
+      "summary_ko": "인물이 문을 열고 들어오는 장면",
+      "evidence": "문이 열리고, 인물이 문을 통해 들어오는 모습",
+      "limitations": "인물의 움직임이 명확하지 않음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"entry_exit\",\n  \"summary_ko\": \"인물이 문을 열고 들어오는 장면\",\n  \"evidence\": \"문이 열리고, 인물이 문을 통해 들어오는 모습\",\n  \"limitations\": \"인물의 움직임이 명확하지 않음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/results/qwen-full-meva-01-08/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 2.0,
+          "file": "/results/qwen-full-meva-01-08/frame-0.jpg"
+        },
+        {
+          "time": 6.0,
+          "file": "/results/qwen-full-meva-01-08/frame-1.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-01-08/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 14.028,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 56.112,
+      "batch_size": 4,
+      "batch_id": "full-meva-01-05"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "1cc6653292e1370a01cb7767365ae92230e4950e2f360933361691ceff5f429d"
+}

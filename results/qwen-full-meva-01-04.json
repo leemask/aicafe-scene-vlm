@@ -1,0 +1,73 @@
+{
+  "id": "qwen-full-meva-01-04",
+  "clip_id": "meva-01-04",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-29T05:43:17.216385+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "entry_exit",
+      "summary_ko": "남성 한 명이 문을 열고 들어옴",
+      "evidence": "남성 한 명이 문을 열고 들어오는 모습",
+      "limitations": "이미지에서 남성의 얼굴과 정확한 행동은 확인되지 않음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"entry_exit\",\n  \"summary_ko\": \"남성 한 명이 문을 열고 들어옴\",\n  \"evidence\": \"남성 한 명이 문을 열고 들어오는 모습\",\n  \"limitations\": \"이미지에서 남성의 얼굴과 정확한 행동은 확인되지 않음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/results/qwen-full-meva-01-04/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 2.0,
+          "file": "/results/qwen-full-meva-01-04/frame-0.jpg"
+        },
+        {
+          "time": 6.0,
+          "file": "/results/qwen-full-meva-01-04/frame-1.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-01-04/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 16.988,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 67.953,
+      "batch_size": 4,
+      "batch_id": "full-meva-01-01",
+      "frame_check_note": "중간 프레임에 문을 열고 들어오는 사람이 보입니다. 출입 설명은 대체로 부합하나 성별까지 표현할 필요는 없으며 정확한 동작 시각은 이 3장만으로 정할 수 없습니다.",
+      "frame_check_source": "ChatGPT sampled-frame/text review; not human ground truth",
+      "frame_check_finding": "broadly_supported"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "0e1684680b6ad169ca1bb02035d1b1e70de8ed06741e5a11047615617cb5732c"
+}

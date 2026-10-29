@@ -1,0 +1,9 @@
+fastapi==0.162.0
+starlette==1.10.0
+uvicorn==0.54.0
+python-multipart>=0.0.18,<1
+httpx==0.28.1
+av==19.0.2
+Pillow>=10,<13
+imageio-ffmpeg>=0.5,<1
+PyYAML>=6,<7

@@ -1,0 +1,73 @@
+{
+  "id": "qwen-full-meva-04-03",
+  "clip_id": "meva-04-03",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-29T05:48:18.281738+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "vehicle_loading",
+      "summary_ko": "흰색 SUV가 주차장에 주차됨",
+      "evidence": "흰색 SUV가 주차장에 주차됨",
+      "limitations": "주차장에 주차된 차량의 상태를 확인할 수 있음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"vehicle_loading\",\n  \"summary_ko\": \"흰색 SUV가 주차장에 주차됨\",\n  \"evidence\": \"흰색 SUV가 주차장에 주차됨\",\n  \"limitations\": \"주차장에 주차된 차량의 상태를 확인할 수 있음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/results/qwen-full-meva-04-03/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 2.0,
+          "file": "/results/qwen-full-meva-04-03/frame-0.jpg"
+        },
+        {
+          "time": 6.0,
+          "file": "/results/qwen-full-meva-04-03/frame-1.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-04-03/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 10.625,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 42.5,
+      "batch_size": 4,
+      "batch_id": "full-meva-04-01",
+      "frame_check_note": "모델은 category를 vehicle_loading으로 냈지만 summary와 evidence에는 SUV가 주차되어 있다는 설명만 있습니다. 출력 자체의 분류·근거가 일치하지 않습니다. 이 지적은 원문 일관성 검토이며 영상의 상하차 부재를 확정한 것은 아닙니다.",
+      "frame_check_source": "ChatGPT sampled-frame/text review; not human ground truth",
+      "frame_check_finding": "output_inconsistency"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "30c08d2b95a57cca13968f0516dcdca4229163684a762404d0fa70119a9297cc"
+}

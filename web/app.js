@@ -1,0 +1,63 @@
+const $=s=>document.querySelector(s);
+const labels={entry_exit:'사람 출입·이동',object_handling:'물건 운반·인계',vehicle_loading:'차량 상하차',other:'기타 관찰',uncertain:'판단 보류'};
+const reviews={unreviewed:'검토 대기',correct:'설명 적절',incorrect:'잘못된 설명',missed:'중요 행동 누락',uncertain:'판단 어려움'};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const time=s=>`${Math.floor(s/60).toString().padStart(2,'0')}:${Math.floor(s%60).toString().padStart(2,'0')}`;
+let clips=[],jobs=[],selected=null,currentJob=null,currentSegment=null,online=false,busy=false,filter='all',timer=null;
+let localReviews={};try{localReviews=JSON.parse(localStorage.getItem('aicafe-scene-reviews')||'{}')}catch{}
+function toast(s){$('#toast').textContent=s;$('#toast').hidden=false;clearTimeout(timer);timer=setTimeout(()=>$('#toast').hidden=true,6000)}
+async function api(path,options={}){const r=await fetch(path,{signal:AbortSignal.timeout(path==='/api/upload'?360000:10000),...options});const j=await r.json();if(!r.ok)throw Error(typeof j.detail==='string'?j.detail:'요청 실패');return j}
+function media(clip){return online?`/api/video/${clip.id}`:`../${clip.file}`}
+function thumb(clip){return clip.thumbnail?`../${clip.thumbnail}`:''}
+function jobFor(id){return jobs.find(j=>j.clip_id===id)}
+function applyReviews(){if(!online)for(const j of jobs)for(const s of j.segments||[])Object.assign(s,localReviews[`${j.id}:${s.id}`]||{})}
+function counters(){const samples=clips.filter(c=>c.source==='MEVA KF1');$('#datasetNote').textContent=`${samples.length}개 샘플 · ${new Set(samples.map(c=>c.source_name)).size}개 원본 · ${new Set(samples.map(c=>c.camera_id||c.source_name?.split('.').pop())).size}대 카메라. 같은 MEVA 시설의 영상이며 독립적인 현장은 아닙니다. 검증 주제는 행동 정답이 아닙니다.`; $('#clipCount').textContent=clips.length;$('#runCount').textContent=new Set(jobs.filter(j=>j.segments?.length).map(j=>j.clip_id)).size;$('#reviewCount').textContent=jobs.reduce((n,j)=>n+(j.segments||[]).filter(s=>s.review&&s.review!=='unreviewed').length,0)}
+function renderList(){const q=$('#search').value.trim().toLowerCase();const found=clips.filter(c=>{const j=jobFor(c.id);const set=$('#sampleSet').value||'all',focus=$('#testFocus').value||'all';if(set!=='all'&&c.sample_set!==set)return false;if(focus!=='all'&&c.test_focus!==focus)return false;if(filter==='analyzed'&&!j?.segments?.length)return false;if(filter==='review'&&(!j?.segments?.length||j.segments.every(s=>s.review!=='unreviewed')))return false;const text=[c.title,c.camera_id,c.recording_date,c.test_focus,c.sample_set,...(j?.segments||[]).flatMap(s=>[s.raw,s.summary_ko,labels[s.category]])].join(' ').toLowerCase();return !q||text.includes(q)});$('#matchedCount').textContent=`${found.length}개 표시 / 전체 ${clips.length}개`;$('#clipList').innerHTML=found.map(c=>{const j=jobFor(c.id);return `<button class="clip ${c.id===selected?.id?'active':''}" data-id="${esc(c.id)}">${thumb(c)?`<img src="${esc(thumb(c))}" alt="${esc(c.title)} 미리보기" loading="lazy">`:''}<strong>${esc(c.title)}</strong><div class="meta"><span>${esc(c.recording_date||'')}</span><span>${esc(c.sample_set||'')}</span></div><div class="meta"><span>${time(c.duration)}</span><span>${j?.segments?.length?'분석 결과 있음':'미분석'}</span></div></button>`}).join('')||'<div class="empty">검색 결과가 없습니다.</div>';$('#clipList').querySelectorAll('[data-id]').forEach(el=>el.onclick=()=>select(el.dataset.id));counters()}
+function select(id){selected=clips.find(c=>c.id===id);if(!selected)return;currentJob=jobFor(id);currentSegment=null;$('#videoTitle').textContent=selected.title;$('#camera').textContent=selected.source||'사용자 영상';$('#duration').textContent=time(selected.duration);$('#player').src=media(selected);$('#player').poster=thumb(selected);$('#sourceInfo').innerHTML=selected.source_url?`원본 구간 ${time(selected.source_start)}–${time(selected.source_end)} · ${esc(selected.source_name)}<br><a href="${esc(selected.source_url)}" target="_blank" rel="noreferrer">원본 영상 ↗</a>`:'사용자 업로드 영상 · 분석은 선택한 연결 방식으로 실행';$('#truth').innerHTML=(selected.ground_truth||[]).map(g=>`<div class="gt"><b>${esc(g.activity)}</b><span class="mono">${time(g.start)}–${time(g.end)}</span> · ${esc(labels[g.category]||g.category)}</div>`).join('')||'<p class="muted">공개 주석 없음 · 정상 여부 미확인</p>';renderList();renderResults();if(currentJob?.segments?.length)detail(currentJob.segments[0]);else $('#detail').innerHTML='<p class="muted">아직 분석 결과가 없습니다. 모델을 연결해 실행하세요.</p>'}
+function renderResults(){const segs=currentJob?.segments||[];$('#results').innerHTML=segs.map(s=>`<article class="result ${currentSegment?.id===s.id?'selected':''}" data-seg="${s.id}" tabindex="0" role="button"><div class="result-top"><span class="badge ${s.category!=='uncertain'?'green':''}">모델 추정 · ${esc(labels[s.category]||s.category)}</span><span class="mono">${time(s.start)}–${time(s.end)}</span></div><h3>${esc(s.summary_ko)}</h3>${s.caption_only?`<p class="raw">${esc(s.raw)}</p>`:`<p>${esc(s.evidence)}</p>`}<div class="result-top"><span class="mono">${esc(s.provider)} · ${s.timing_kind==='amortized_batch'?'배치 평균 ':''}${s.inference_seconds}s</span><span class="mono">${esc(reviews[s.review]||'검토 대기')}</span></div></article>`).join('')||'<div class="empty">아직 분석된 구간이 없습니다.<br>영상만 준비된 상태를 AI 결과로 표시하지 않습니다.</div>';if(currentJob?.error)$('#results').insertAdjacentHTML('afterbegin',`<div class="notice">${esc(currentJob.error)}</div>`);if(currentJob?.sampled_until<selected?.duration)$('#results').insertAdjacentHTML('beforeend',`<p class="hint">분석 범위: 처음 ${time(currentJob.sampled_until)}까지. 이후 영상은 미분석입니다.</p>`);$('#results').querySelectorAll('[data-seg]').forEach(el=>{const choose=()=>{const s=segs.find(s=>s.id===el.dataset.seg);$('#player').currentTime=s.start;detail(s)};el.onclick=choose;el.onkeydown=e=>{if(e.key==='Enter')choose()}});counters()}
+function detail(s){currentSegment=s;const img=s.thumbnail?(online?s.thumbnail:`..${s.thumbnail}`):thumb(selected);const frames=(s.evidence_frames||[]).map(f=>`<figure><a href="${esc(online?f.file:'..'+f.file)}" target="_blank" rel="noreferrer"><img src="${esc(online?f.file:'..'+f.file)}" alt="${f.time.toFixed(2)}초 분석 프레임"></a><figcaption>${f.time.toFixed(2)}s</figcaption></figure>`).join('');$('#detail').innerHTML=`${frames?`<div class="frame-gallery">${frames}</div>`:img?`<img src="${esc(img)}" alt="분석에 사용된 근거 프레임">`:''}<p class="mono">추출 시각 ${(s.frame_times||[]).map(t=>t.toFixed(2)+'s').join(' / ')}</p><p class="muted">${esc(s.model)}</p>${s.frame_check_note?`<div class="frame-check"><b>프레임 대조 참고</b><p>${esc(s.frame_check_note)}</p><small>ChatGPT의 샘플 프레임 검토 · 확정 정답 아님</small></div>`:''}<h3>모델 출력 원문</h3><div class="raw-block">${esc(s.raw)}</div><p class="hint">${esc(s.limitations)}</p><label class="sr" for="review">검토 결과</label><select id="review">${Object.entries(reviews).map(([k,v])=>`<option value="${k}" ${s.review===k?'selected':''}>${v}</option>`).join('')}</select><label class="sr" for="reviewNote">검토 메모</label><textarea id="reviewNote" placeholder="잘못 본 물체, 누락된 행동, 실제 상황 등을 기록">${esc(s.review_note||'')}</textarea><button id="saveReview" class="primary">검토 저장</button><p class="hint">${online?'검토는 로컬 서버에 저장됩니다.':'검토는 이 브라우저에 저장됩니다. 내보내기로 별도 보관하세요.'}</p>`;$('#saveReview').onclick=saveReview;renderResults()}
+async function saveReview(){if(!currentJob||!currentSegment)return;const update={review:$('#review').value,review_note:$('#reviewNote').value};try{if(online)await api(`/api/jobs/${currentJob.id}/segments/${currentSegment.id}/review`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({verdict:update.review,note:update.review_note})});else{localReviews[`${currentJob.id}:${currentSegment.id}`]=update;localStorage.setItem('aicafe-scene-reviews',JSON.stringify(localReviews))}Object.assign(currentSegment,update);renderResults();renderList();toast('검토 결과를 저장했습니다.')}catch(e){toast(e.message)}}
+function exportResults(){const data={exported_at:new Date().toISOString(),clips:clips.map(c=>({id:c.id,source:c.source,source_url:c.source_url})),jobs};const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));a.download='aicafe-scene-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+async function run(){if(!online){showSetup();return}if(!selected||busy)return;busy=true;syncConnection();try{const j=await api('/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({clip_id:selected.id,provider:$('#provider').value,model:$('#model').value,allow_cloud:$('#cloud').checked})});jobs.unshift(j);currentJob=j;renderResults();poll(j.id);toast('분석을 시작했습니다. 모델 최초 로딩에는 시간이 걸릴 수 있습니다.')}catch(e){busy=false;syncConnection();toast(e.message)}}
+async function poll(id){busy=true;syncConnection();$('#progress').hidden=false;try{const j=await api(`/api/jobs/${id}`);jobs=jobs.map(old=>old.id===id?j:old);$('#progress progress').value=100*j.progress/Math.max(1,j.total);$('#progress span').textContent=`${j.progress} / ${j.total} 구간 · ${j.status}`;if(selected?.id===j.clip_id){currentJob=j;renderResults()}renderList();if(j.status==='running')setTimeout(()=>poll(id),1800);else{busy=false;syncConnection();if(selected?.id===j.clip_id&&j.segments.length)detail(j.segments[0]);toast(j.status==='completed'?'분석을 완료했습니다. 설명을 검토해 주세요.':j.error||'분석 중단')}}catch(e){busy=false;online=false;syncConnection();toast('서버 응답을 받지 못했습니다. 서버 창을 확인하고 연결을 다시 확인하세요.')}}
+$('#provider').onchange=()=>{const p=$('#provider').value;$('#model').value=p==='ollama'?'qwen3-vl:2b':p==='openai'?'gpt-4.1-mini':p==='qwen'?'Qwen/Qwen3-VL-2B-Instruct':'HuggingFaceTB/SmolVLM-256M-Instruct';$('#model').disabled=p==='smolvlm'||p==='qwen';$('#cloudWrap').hidden=p!=='openai';$('#analysisHint').textContent=p==='qwen'?'직접 실행은 requirements-local-model.txt 설치가 필요합니다. CPU에서는 느릴 수 있습니다.':p==='smolvlm'?'CPU 기초 모델은 영문 설명만 생성합니다. 정식 행동 판정은 보류하며 최초 모델 다운로드가 필요합니다.':p==='openai'?'OPENAI_API_KEY는 서버 환경변수로 설정합니다. 브라우저에 키를 입력하지 않습니다.':'Ollama가 실행 중이고 선택한 이미지 지원 모델이 설치되어 있어야 합니다.'};
+$('#search').oninput=renderList;$('#sampleSet').onchange=renderList;$('#testFocus').onchange=renderList;document.querySelectorAll('[data-filter]').forEach(el=>el.onclick=()=>{filter=el.dataset.filter;document.querySelectorAll('[data-filter]').forEach(b=>b.classList.toggle('active',b===el));renderList()});$('#analyze').onclick=run;$('#export').onclick=exportResults;$('#uploadBtn').onclick=()=>online?$('#upload').click():showSetup();$('#upload').onchange=async()=>{const file=$('#upload').files[0];if(!file)return;const form=new FormData();form.append('file',file);$('#uploadBtn').disabled=true;toast('영상을 업로드하고 재생 형식으로 변환합니다.');try{const c=await api('/api/upload',{method:'POST',body:form});clips.push(c);select(c.id);toast('업로드 완료')}catch(e){toast(e.message)}finally{$('#uploadBtn').disabled=false;$('#upload').value=''}};$('#player').ontimeupdate=()=>$('#playTime').textContent=time($('#player').currentTime);
+function syncConnection(){
+  $('#connection').textContent=online?'로컬 서버 연결':'저장 결과 보기 · 서버 미연결';
+  $('#analyze').disabled=online&&busy;
+  $('#analyze').textContent=online?(busy?'분석 진행 중…':'이 영상 분석하기 →'):'분석 실행 안내 →';
+  $('#uploadBtn').disabled=false;
+  $('#setupGuide').hidden=online;
+  $('#retryConnection').hidden=location.protocol==='file:';
+  if(!online){
+    $('#setupReason').textContent=location.protocol==='file:'
+      ?'현재 HTML 파일을 직접 열었습니다. 저장된 결과는 볼 수 있지만, 새 영상 분석과 업로드에는 로컬 서버가 필요합니다.'
+      :'현재 주소에서 분석 서버에 연결하지 못했습니다. 서버 창의 실행 상태를 확인하세요. 정적 미리보기 주소에서도 저장 결과만 표시됩니다.';
+  }
+}
+function showSetup(){
+  $('#setupGuide').hidden=false;
+  $('#setupGuide').scrollIntoView({behavior:'smooth',block:'center'});
+}
+async function connect(){
+  if(location.protocol==='file:'){syncConnection();return}
+  $('#retryConnection').disabled=true;
+  try{
+    const status=await api('/api/status');
+    const [c,j]=await Promise.all([api('/api/clips'),api('/api/jobs')]);
+    if(!Array.isArray(c.clips)||!Array.isArray(j.jobs))throw Error('잘못된 서버 응답');
+    clips=c.clips;jobs=j.jobs;online=true;busy=!!status.busy;
+  }catch{online=false;busy=false}
+  finally{$('#retryConnection').disabled=false}
+  syncConnection();applyReviews();renderList();
+  if(clips.length)select(clips.some(c=>c.id===selected?.id)?selected.id:clips[0].id);
+  const pending=jobs.find(j=>j.status==='running');
+  if(online&&pending)poll(pending.id);
+}
+$('#retryConnection').onclick=connect;
+async function init(){
+  clips=window.SCENE_BUNDLE?.clips||[];jobs=window.SCENE_BUNDLE?.jobs||[];
+  syncConnection();applyReviews();renderList();if(clips.length)select(clips[0].id);
+  await connect();
+}
+const initialization=init();

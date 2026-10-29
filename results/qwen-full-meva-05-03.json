@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-05-03",
+  "clip_id": "meva-05-03",
+  "status": "completed",
+  "duration": 20.0,
+  "created_at": "2026-10-29T05:49:46.235468+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "건물 내부 복도",
+      "evidence": "복도와 계단, 벽, 창문, 난방기 등이 보인다.",
+      "limitations": "사람이나 물체의 움직임은 보이지 않음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"건물 내부 복도\",\n  \"evidence\": \"복도와 계단, 벽, 창문, 난방기 등이 보인다.\",\n  \"limitations\": \"사람이나 물체의 움직임은 보이지 않음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 20.0,
+      "thumbnail": "/results/qwen-full-meva-05-03/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 3.333,
+          "file": "/results/qwen-full-meva-05-03/frame-0.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-05-03/frame-1.jpg"
+        },
+        {
+          "time": 16.667,
+          "file": "/results/qwen-full-meva-05-03/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        3.333,
+        10.0,
+        16.667
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 11.132,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 44.528,
+      "batch_size": 4,
+      "batch_id": "full-meva-05-01"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 20.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "7f1ec3e34057784659d756fbc95288d47a032c1e318a9351bb4118ef125af3f0"
+}

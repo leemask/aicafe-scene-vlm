@@ -1,0 +1,7 @@
+- { meta: "2018-03-07.17-05-00.17-10-00.bus.G340 events" }
+- { meta: "Close_Trunk 1 instances" }
+- { meta: "Embrace_Interaction 1 instances" }
+- { meta: "Load_Vehicle 1 instances" }
+- { act: { act3: { Embrace_Interaction: 1.0 } , id2: 1, timespan: [{tsr0: [1349, 1499]}], src: truth, actors: [{ id1: 1, timespan: [{tsr0: [1349, 1499]}]}  , { id1: 0, timespan: [{tsr0: [1349, 1499]}]}  ]} } 
+- { act: { act3: { Close_Trunk: 1.0 } , id2: 2, timespan: [{tsr0: [4270, 4340]}], src: truth, actors: [{ id1: 5, timespan: [{tsr0: [4270, 4340]}]}  , { id1: 6, timespan: [{tsr0: [4270, 4340]}]}  ]} } 
+- { act: { act3: { Load_Vehicle: 1.0 } , id2: 3, timespan: [{tsr0: [2192, 2346]}], src: truth, actors: [{ id1: 4, timespan: [{tsr0: [2192, 2346]}]}  , { id1: 2, timespan: [{tsr0: [2192, 2346]}]}  ]} } 

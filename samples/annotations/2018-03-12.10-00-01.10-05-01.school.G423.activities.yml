@@ -1,0 +1,9 @@
+- { meta: "2018-03-12.10-00-01.10-05-01.school.G423 events" }
+- { meta: "Object_Transfer 1 instances" }
+- { meta: "Purchasing 1 instances" }
+- { meta: "Sit_Down 1 instances" }
+- { meta: "Stand_Up 1 instances" }
+- { act: { act3: { Object_Transfer: 1.0 } , id2: 1, timespan: [{tsr0: [2868, 2931]}], src: truth, actors: [{ id1: 0, timespan: [{tsr0: [2868, 2931]}]}  , { id1: 1, timespan: [{tsr0: [2868, 2931]}]}  ]} } 
+- { act: { act3: { Stand_Up: 1.0 } , id2: 2, timespan: [{tsr0: [1615, 1658]}], src: truth, actors: [{ id1: 4, timespan: [{tsr0: [1615, 1658]}]}  ]} } 
+- { act: { act3: { Purchasing: 1.0 } , id2: 3, timespan: [{tsr0: [2868, 3042]}], src: truth, actors: [{ id1: 2, timespan: [{tsr0: [2868, 3042]}]}  ]} } 
+- { act: { act3: { Sit_Down: 1.0 } , id2: 4, timespan: [{tsr0: [578, 639]}], src: truth, actors: [{ id1: 3, timespan: [{tsr0: [578, 639]}]}  ]} } 

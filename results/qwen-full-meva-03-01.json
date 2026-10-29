@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-03-01",
+  "clip_id": "meva-03-01",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-29T05:46:53.873944+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "차량이 주차된 공간에서 움직이는 장면",
+      "evidence": "차량이 주차된 공간에서 차량이 움직이는 모습",
+      "limitations": "차량의 움직임이 정확히 판단하기 어려움",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"차량이 주차된 공간에서 움직이는 장면\",\n  \"evidence\": \"차량이 주차된 공간에서 차량이 움직이는 모습\",\n  \"limitations\": \"차량의 움직임이 정확히 판단하기 어려움\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/results/qwen-full-meva-03-01/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 2.0,
+          "file": "/results/qwen-full-meva-03-01/frame-0.jpg"
+        },
+        {
+          "time": 6.0,
+          "file": "/results/qwen-full-meva-03-01/frame-1.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-03-01/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 11.313,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 45.252,
+      "batch_size": 4,
+      "batch_id": "full-meva-03-01"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "f6229a55a2ee583f07bc03182f335af717a6e3636af9afa7bfb1f7062cdc2ece"
+}

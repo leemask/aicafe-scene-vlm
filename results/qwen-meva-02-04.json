@@ -1,0 +1,43 @@
+{
+  "id": "qwen-meva-02-04",
+  "clip_id": "meva-02-04",
+  "status": "completed",
+  "duration": 12.0,
+  "created_at": "2026-10-27T15:21:44.332747+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "사람들이 대기실에 앉아 있다.",
+      "evidence": "대기실에 앉아 있는 여러 사람들이 보인다.",
+      "limitations": "사람들의 움직임은 확인되지 않음.",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"사람들이 대기실에 앉아 있다.\",\n  \"evidence\": \"대기실에 앉아 있는 여러 사람들이 보인다.\",\n  \"limitations\": \"사람들의 움직임은 확인되지 않음.\"\n}",
+      "inference_seconds": 37.714,
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "review": "unreviewed",
+      "id": "0",
+      "start": 0,
+      "end": 12.0,
+      "thumbnail": "/samples/meva-02-04.jpg"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 12.0,
+  "scope": "3 frames per clip; 576px maximum model input. Ground truth and filenames excluded. Predicted category is not confirmed truth.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 4,
+    "max_new_tokens": 260,
+    "sampling": false
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "id": "qwen-full-meva-08-01",
+  "clip_id": "meva-08-01",
+  "status": "completed",
+  "duration": 20.0,
+  "created_at": "2026-10-29T05:52:13.715352+00:00",
+  "provider": "qwen",
+  "model": "Qwen/Qwen3-VL-2B-Instruct",
+  "segments": [
+    {
+      "category": "other",
+      "summary_ko": "운동장에서 사람의 움직임",
+      "evidence": "운동장 좌석에 앉은 사람의 움직임",
+      "limitations": "사람의 움직임이 명확하지 않음",
+      "parse_ok": true,
+      "raw": "{\n  \"category\": \"other\",\n  \"summary_ko\": \"운동장에서 사람의 움직임\",\n  \"evidence\": \"운동장 좌석에 앉은 사람의 움직임\",\n  \"limitations\": \"사람의 움직임이 명확하지 않음\"\n}",
+      "id": "0",
+      "start": 0,
+      "end": 20.0,
+      "thumbnail": "/results/qwen-full-meva-08-01/frame-1.jpg",
+      "evidence_frames": [
+        {
+          "time": 3.333,
+          "file": "/results/qwen-full-meva-08-01/frame-0.jpg"
+        },
+        {
+          "time": 10.0,
+          "file": "/results/qwen-full-meva-08-01/frame-1.jpg"
+        },
+        {
+          "time": 16.667,
+          "file": "/results/qwen-full-meva-08-01/frame-2.jpg"
+        }
+      ],
+      "frame_times": [
+        3.333,
+        10.0,
+        16.667
+      ],
+      "review": "unreviewed",
+      "provider": "qwen",
+      "model": "Qwen/Qwen3-VL-2B-Instruct",
+      "inference_seconds": 10.724,
+      "timing_kind": "amortized_batch",
+      "batch_wall_seconds": 42.895,
+      "batch_size": 4,
+      "batch_id": "full-meva-08-01"
+    }
+  ],
+  "progress": 1,
+  "total": 1,
+  "sampled_until": 20.0,
+  "scope": "Three sampled frames describe a whole clip; not continuous motion detection. Ground truth, metadata and file names are not sent to the model.",
+  "inference_config": {
+    "dtype": "bfloat16",
+    "attention": "sdpa",
+    "threads": 8,
+    "max_new_tokens": 260,
+    "sampling": false,
+    "max_image_size": [
+      576,
+      324
+    ],
+    "frames_per_clip": 3,
+    "batch_size": 4,
+    "padding_side": "left",
+    "revision": "89644892e4d85e24eaac8bacfd4f463576704203"
+  },
+  "input_video_sha256": "531239f6905b25cb6f125c07de4286a7b63b4ac8ef6204229702c161c37c595b"
+}

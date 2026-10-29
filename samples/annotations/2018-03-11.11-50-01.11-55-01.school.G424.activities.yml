@@ -1,0 +1,9 @@
+- { meta: "2018-03-11.11-50-01.11-55-01.school.G424 events" }
+- { meta: "Close_Trunk 1 instances" }
+- { meta: "Enter_Vehicle 1 instances" }
+- { meta: "Load_Vehicle 1 instances" }
+- { meta: "Open_Trunk 1 instances" }
+- { act: { act3: { Enter_Vehicle: 1.0 } , id2: 1, timespan: [{tsr0: [1362, 1491]}], src: truth, actors: [{ id1: 0, timespan: [{tsr0: [1362, 1479]}]}  , { id1: 1, timespan: [{tsr0: [1362, 1491]}]}  ]} } 
+- { act: { act3: { Open_Trunk: 1.0 } , id2: 2, timespan: [{tsr0: [1080, 1170]}], src: truth, actors: [{ id1: 2, timespan: [{tsr0: [1080, 1170]}]}  , { id1: 3, timespan: [{tsr0: [1080, 1170]}]}  ]} } 
+- { act: { act3: { Close_Trunk: 1.0 } , id2: 3, timespan: [{tsr0: [1221, 1278]}], src: truth, actors: [{ id1: 4, timespan: [{tsr0: [1221, 1278]}]}  , { id1: 5, timespan: [{tsr0: [1221, 1278]}]}  ]} } 
+- { act: { act3: { Load_Vehicle: 1.0 } , id2: 4, timespan: [{tsr0: [1150, 1236]}], src: truth, actors: [{ id1: 6, timespan: [{tsr0: [1150, 1236]}]}  , { id1: 7, timespan: [{tsr0: [1150, 1236]}]}  , { id1: 8, timespan: [{tsr0: [1150, 1236]}]}  ]} } 

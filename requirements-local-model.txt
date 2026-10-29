@@ -1,0 +1,4 @@
+-r requirements.txt
+transformers==4.57.1
+torch==2.8.0
+torchvision==0.23.0
