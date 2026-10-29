@@ -1,0 +1,165 @@
+{
+  "clip_id": "meva-02-03",
+  "input_video_sha256": "489f4313d26467385fc2e6d2c602d6e8e9d3cc05e541291f87dbddbe6fe0dfb6",
+  "probe_seconds": 0.2483868369999982,
+  "probes": [
+    {
+      "time": 0.0,
+      "score": 0.0
+    },
+    {
+      "time": 0.5333333333333333,
+      "score": 0.009730392156862746
+    },
+    {
+      "time": 1.0,
+      "score": 0.015845588235294118
+    },
+    {
+      "time": 1.5333333333333334,
+      "score": 0.04549019607843137
+    },
+    {
+      "time": 2.0,
+      "score": 0.03665849673202614
+    },
+    {
+      "time": 2.533333333333333,
+      "score": 0.02062091503267974
+    },
+    {
+      "time": 3.0,
+      "score": 0.028991013071895423
+    },
+    {
+      "time": 3.533333333333333,
+      "score": 0.02651143790849673
+    },
+    {
+      "time": 4.0,
+      "score": 0.014873366013071895
+    },
+    {
+      "time": 4.533333333333333,
+      "score": 0.00213235294117647
+    },
+    {
+      "time": 5.0,
+      "score": 0.006417483660130719
+    },
+    {
+      "time": 5.533333333333333,
+      "score": 0.004456699346405229
+    },
+    {
+      "time": 6.0,
+      "score": 0.008876633986928105
+    },
+    {
+      "time": 6.533333333333333,
+      "score": 0.004125816993464052
+    },
+    {
+      "time": 7.0,
+      "score": 0.002691993464052287
+    },
+    {
+      "time": 7.533333333333333,
+      "score": 0.0010620915032679738
+    },
+    {
+      "time": 8.0,
+      "score": 0.004183006535947712
+    },
+    {
+      "time": 8.533333333333333,
+      "score": 0.0016952614379084968
+    },
+    {
+      "time": 9.0,
+      "score": 0.0020302287581699346
+    },
+    {
+      "time": 9.533333333333333,
+      "score": 0.0010171568627450982
+    },
+    {
+      "time": 10.0,
+      "score": 0.0035130718954248367
+    },
+    {
+      "time": 10.533333333333333,
+      "score": 0.0015155228758169934
+    },
+    {
+      "time": 11.0,
+      "score": 0.0021568627450980395
+    },
+    {
+      "time": 11.533333333333333,
+      "score": 0.0016339869281045752
+    }
+  ],
+  "modes": {
+    "uniform3": {
+      "requested_frames": 3,
+      "actual_frames": 3,
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.2242542889980541,
+      "reference_interval_coverage": [
+        {
+          "activity": "Object_Transfer",
+          "start": 7.3,
+          "end": 9.633,
+          "with_sample": false
+        }
+      ]
+    },
+    "uniform6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        3.0,
+        5.0,
+        7.0,
+        9.0,
+        11.0
+      ],
+      "selection_decode_seconds": 0.45373395799833816,
+      "reference_interval_coverage": [
+        {
+          "activity": "Object_Transfer",
+          "start": 7.3,
+          "end": 9.633,
+          "with_sample": true
+        }
+      ]
+    },
+    "hybrid6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.30706741500034695,
+      "reference_interval_coverage": [
+        {
+          "activity": "Object_Transfer",
+          "start": 7.3,
+          "end": 9.633,
+          "with_sample": false
+        }
+      ]
+    }
+  }
+}

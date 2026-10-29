@@ -1,0 +1,144 @@
+{
+  "clip_id": "meva-03-01",
+  "input_video_sha256": "f6229a55a2ee583f07bc03182f335af717a6e3636af9afa7bfb1f7062cdc2ece",
+  "probe_seconds": 0.2547026569991431,
+  "probes": [
+    {
+      "time": 0.0,
+      "score": 0.0
+    },
+    {
+      "time": 0.5333333333333333,
+      "score": 0.060482026143790855
+    },
+    {
+      "time": 1.0,
+      "score": 0.07608251633986929
+    },
+    {
+      "time": 1.5333333333333334,
+      "score": 0.08564133986928105
+    },
+    {
+      "time": 2.0,
+      "score": 0.08115196078431373
+    },
+    {
+      "time": 2.533333333333333,
+      "score": 0.0784436274509804
+    },
+    {
+      "time": 3.0,
+      "score": 0.0827124183006536
+    },
+    {
+      "time": 3.533333333333333,
+      "score": 0.07060049019607843
+    },
+    {
+      "time": 4.0,
+      "score": 0.0756985294117647
+    },
+    {
+      "time": 4.533333333333333,
+      "score": 0.06726715686274509
+    },
+    {
+      "time": 5.0,
+      "score": 0.04243872549019608
+    },
+    {
+      "time": 5.533333333333333,
+      "score": 0.001286764705882353
+    },
+    {
+      "time": 6.0,
+      "score": 0.0
+    },
+    {
+      "time": 6.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 7.0,
+      "score": 0.0
+    },
+    {
+      "time": 7.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 8.0,
+      "score": 0.0
+    },
+    {
+      "time": 8.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 9.0,
+      "score": 0.0
+    },
+    {
+      "time": 9.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 10.0,
+      "score": 0.0
+    },
+    {
+      "time": 10.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 11.0,
+      "score": 0.0
+    },
+    {
+      "time": 11.533333333333333,
+      "score": 0.0
+    }
+  ],
+  "modes": {
+    "uniform3": {
+      "requested_frames": 3,
+      "actual_frames": 3,
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.26830376900034025,
+      "reference_interval_coverage": []
+    },
+    "uniform6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        3.0,
+        5.0,
+        7.0,
+        9.0,
+        11.0
+      ],
+      "selection_decode_seconds": 0.4988911750006082,
+      "reference_interval_coverage": []
+    },
+    "hybrid6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        2.0,
+        3.0,
+        4.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.4136059659977036,
+      "reference_interval_coverage": []
+    }
+  }
+}

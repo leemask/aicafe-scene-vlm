@@ -1,0 +1,229 @@
+{
+  "clip_id": "meva-07-02",
+  "input_video_sha256": "1941326ab3c0f58197510093ef774fbfa9df1b1998cdba9dcc8e89398fb43890",
+  "probe_seconds": 0.39110385999811115,
+  "probes": [
+    {
+      "time": 0.0,
+      "score": 0.0
+    },
+    {
+      "time": 0.5333333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 1.0,
+      "score": 0.0
+    },
+    {
+      "time": 1.5333333333333334,
+      "score": 0.0
+    },
+    {
+      "time": 2.0,
+      "score": 0.0
+    },
+    {
+      "time": 2.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 3.0,
+      "score": 0.0
+    },
+    {
+      "time": 3.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 4.0,
+      "score": 0.0
+    },
+    {
+      "time": 4.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 5.0,
+      "score": 0.0
+    },
+    {
+      "time": 5.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 6.0,
+      "score": 0.0
+    },
+    {
+      "time": 6.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 7.0,
+      "score": 0.0
+    },
+    {
+      "time": 7.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 8.0,
+      "score": 0.0
+    },
+    {
+      "time": 8.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 9.0,
+      "score": 0.0
+    },
+    {
+      "time": 9.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 10.0,
+      "score": 0.0
+    },
+    {
+      "time": 10.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 11.0,
+      "score": 0.0
+    },
+    {
+      "time": 11.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 12.0,
+      "score": 0.0
+    },
+    {
+      "time": 12.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 13.0,
+      "score": 0.0
+    },
+    {
+      "time": 13.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 14.0,
+      "score": 0.0
+    },
+    {
+      "time": 14.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 15.0,
+      "score": 0.0
+    },
+    {
+      "time": 15.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 16.0,
+      "score": 0.0
+    },
+    {
+      "time": 16.533333333333335,
+      "score": 0.0
+    },
+    {
+      "time": 17.0,
+      "score": 0.0
+    },
+    {
+      "time": 17.533333333333335,
+      "score": 0.0
+    },
+    {
+      "time": 18.0,
+      "score": 0.0
+    },
+    {
+      "time": 18.533333333333335,
+      "score": 0.0
+    },
+    {
+      "time": 19.0,
+      "score": 0.0
+    },
+    {
+      "time": 19.533333333333335,
+      "score": 0.0
+    }
+  ],
+  "modes": {
+    "uniform3": {
+      "requested_frames": 3,
+      "actual_frames": 3,
+      "frame_times": [
+        3.3333333333333335,
+        10.0,
+        16.666666666666668
+      ],
+      "selection_decode_seconds": 0.14684443200167152,
+      "reference_interval_coverage": [
+        {
+          "activity": "Exit_Facility",
+          "start": 5.433,
+          "end": 20,
+          "with_sample": true
+        }
+      ]
+    },
+    "uniform6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.6666666666666667,
+        5.0,
+        8.333333333333334,
+        11.666666666666666,
+        15.0,
+        18.333333333333332
+      ],
+      "selection_decode_seconds": 0.3604266100010136,
+      "reference_interval_coverage": [
+        {
+          "activity": "Exit_Facility",
+          "start": 5.433,
+          "end": 20,
+          "with_sample": true
+        }
+      ]
+    },
+    "hybrid6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        0.0,
+        3.3333333333333335,
+        6.533333333333333,
+        10.0,
+        13.533333333333333,
+        16.666666666666668
+      ],
+      "selection_decode_seconds": 0.287585547001072,
+      "reference_interval_coverage": [
+        {
+          "activity": "Exit_Facility",
+          "start": 5.433,
+          "end": 20,
+          "with_sample": true
+        }
+      ]
+    }
+  }
+}
