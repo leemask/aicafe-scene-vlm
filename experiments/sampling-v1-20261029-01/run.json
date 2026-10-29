@@ -1,0 +1,15 @@
+{
+  "run_id": "sampling-v1-20261029-01",
+  "sampler_version": "motion-v1",
+  "manifest_sha256": "fa37cd85461085d0ad712fb63875c88d340172ddad736ec3339a5ac3534809e5",
+  "sampler_sha256": "56438468b02b5fb2459616e8aac82eb24934adeaffd9624909525dc8d7a8dd3d",
+  "runner_sha256": "8080c3acd3bd01746d2d5427651b76a2c1be565605465ee81772a9be79a67c82",
+  "probe_hz": 2,
+  "modes": [
+    "uniform3",
+    "uniform6",
+    "hybrid6"
+  ],
+  "status": "completed",
+  "vlm_inference_performed": false
+}
