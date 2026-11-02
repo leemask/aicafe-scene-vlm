@@ -6,7 +6,7 @@
   "LICENSE": "2b62a93977e7453bb601c127c58b01a6d11090ab4534a996a69de85d54053576",
   "README.md": "dc28c656d2016151c179084a53dd282cef633dc6805f7dcb28692e4661c31d56",
   "THIRD_PARTY.md": "c6ff85978ef1a3e13ec3b5d8964326f7c9810f62a5e98f0122d6f6a7a1f345e2",
-  "VERIFICATION.md": "f460fcd6970ff56c0cc0bc603136078369dd3e281fcf9f2ef21b925267c376fe",
+  "VERIFICATION.md": "64d21673d7dbd48490c19c68de1c9b8ec83776fefe0b6c0eb0da2684c3e689de",
   "app/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
   "app/core.py": "578aefe94354bbb57776876100756d45cc2f38dbab995904c941a592985ba924",
   "app/server.py": "6279499f7bd8f37d7b76081e7cb9cd3683946c03228b869fa620ba72088f623f",
@@ -517,10 +517,15 @@
   "reports/vlm_attempt_validation.json": "520546a0c03a55305883f1536c21a614294b34c6ff46b6f3186670e6e57453bc",
   "VLM_COMPARISON.md": "4bb712bfa7e84737229a9105c1c81a3ea6a78801a62bbaa4d30ddc50a2c7d485",
   "tests/test_compare_vlm.py": "af7fb8898cc9ae55eb8862bb93eb05bbd5d02b12a0f76430d8cd338b41a6a00e",
-  "scripts/compare_vlm.py": "b49783462a3315dc9af0b032a17df5cc229dc89be2d8adf22fa6df784b9b262e",
+  "scripts/compare_vlm.py": "91d3a8942f90a370ed1003ce5812240b0cd2f2cf3b683c6d5fee06e041417b51",
   "scripts/report_vlm.py": "729cab7696ab516ccc4195dd751b4c3e332245cb3583eb99635ab95aecf0f746",
   "experiments/vlm-paired-20261030-fp32/run.json": "a2cd1832faade1b82ae22be067ee8a1f0b664a38334a8d20a39815345f2e718f",
   "experiments/vlm-paired-20261030-01/run.json": "d3e2e238a723437f112f14a10bda47f11b22cb4aa1b117d660e50a40392b142a",
   "experiments/vlm-paired-20261030-int8/run.json": "d33b560e5883dbb276040b99aff20812474a562dc9e2482eb4b4e2e1b4ef8e8c",
-  "experiments/vlm-paired-20261030-bf16-b1/run.json": "b4fff8a1aaf4d445f38661055ac6996f99fc0a4bbea12baa7f13d83870e31eed"
+  "experiments/vlm-paired-20261030-bf16-b1/run.json": "b4fff8a1aaf4d445f38661055ac6996f99fc0a4bbea12baa7f13d83870e31eed",
+  "setup_gpu_windows.cmd": "9ff5c10a59e263335c556d4e6bbc45066d7ae62c58fcba7cb990cd25da60e199",
+  "scripts/check_gpu.py": "a68afee3c353eccacc0db6ca88ea7fc63128abd6d68c56f9ef1238622f199118",
+  "run_gpu_sample.cmd": "0a62c5539dce3fff6dd3d4fc23796616b11b0ab563415de3fa1ec88fa2c440ce",
+  "GPU_WINDOWS.md": "4c74b7c5ce52f2a2d8e8deeadcf56adb910cc02d06c3e58acb9b741dc1a901e1",
+  "tests/test_gpu_runner.py": "f86eaad8d53992d2a7cb4efa0af7f04104bef8e6922a1449578cb72604b7cc5d"
 }

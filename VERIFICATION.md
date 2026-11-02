@@ -89,3 +89,8 @@ GitHub 업로드와 연결을 완료한 뒤 클라우드 실행 환경을 복구
 동일 조건에서 균등 3장·6장을 새로 추론하는 scripts/compare_vlm.py와 완료 결과의 근거 검토 페이지를 만드는 scripts/report_vlm.py를 추가했습니다. 원문·입력 이미지·해시·시간·RSS 표본을 보존하며 기존 실행 ID 덮어쓰기와 미완료 보고서 생성을 차단합니다.
 
 전체 Python 22개·Node UI 9개 검사 통과 후 신규 메모리 사전 차단 검사를 포함한 비교 전용 6개 테스트 통과(총 고유 Python 23개). 기존 체크섬 대상 515개 파일 일치 확인. 모델 다운로드 성공. bfloat16 배치 4·배치 1은 처리 지연으로 중단했고, float32는 8GiB 메모리 한도에서 OOM 종료, 동적 INT8 변환은 메모리 압박으로 중단했습니다. 네 시도 모두 완료 출력 0건입니다. 모델 인식 성능 개선은 미검증입니다. 자세한 설정과 실패 기록은 VLM_COMPARISON.md 및 experiments/vlm-paired-20261030-*/run.json에 있습니다.
+
+
+## 2026-11-02 Windows GPU 비교 준비
+
+CUDA/FP16 비교 경로와 별도 Windows 설치·진단·샘플 실행 스크립트를 추가했습니다. Python 구문 검사 및 모의 CUDA 부재와 잘못된 CPU/GPU 정밀도 조합 검사 2개 통과. 실제 CUDA 추론, Windows 배치 실행, RTX 3070 메모리/속도는 미검증입니다. GPU_WINDOWS.md 참고. 기존 웹 기본 분석은 CPU로 유지합니다.

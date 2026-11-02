@@ -106,8 +106,13 @@ def main():
     parser.add_argument("--ids", help="Optional comma-separated diagnostic subset; default all clips")
     parser.add_argument("--batch-size", type=int, default=4)
     parser.add_argument("--threads", type=int, default=8)
-    parser.add_argument("--dtype", choices=["bfloat16", "float32", "int8-dynamic"], default="bfloat16")
+    parser.add_argument("--dtype", choices=["bfloat16", "float32", "float16", "int8-dynamic"], default="bfloat16")
+    parser.add_argument("--device", choices=["cpu", "cuda"], default="cpu")
     args = parser.parse_args()
+    if args.device == "cuda" and args.dtype == "int8-dynamic":
+        parser.error("Dynamic INT8 is CPU-only")
+    if args.device == "cpu" and args.dtype == "float16":
+        parser.error("Use float16 with --device cuda")
     if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]{0,63}", args.run_id):
         parser.error("Invalid run ID")
     if not 1 <= args.batch_size <= 4 or not 1 <= args.threads <= 16:
@@ -121,7 +126,7 @@ def main():
         "status": "preparing", "model": MODEL, "revision": REVISION,
         "clip_ids": [c["id"] for c in clips], "modes": MODES,
         "batch_size": args.batch_size, "threads": args.threads,
-        "dtype": args.dtype, "device": "cpu", "attention": "sdpa",
+        "dtype": args.dtype, "device": args.device, "attention": "sdpa",
         "max_image_size": [576, 324], "max_new_tokens": 260,
         "do_sample": False, "padding_side": "left", "seed": 0,
         "prompt": INSTRUCTION,
@@ -135,13 +140,19 @@ def main():
     atomic_json(folder / "run.json", config)
     run_started = time.perf_counter()
     try:
-        if args.dtype == "float32" and config["memory_limit_bytes"] is not None and config["memory_limit_bytes"] < 10 * 1024**3:
+        if args.device == "cpu" and args.dtype == "float32" and config["memory_limit_bytes"] is not None and config["memory_limit_bytes"] < 10 * 1024**3:
             raise MemoryError("float32 run requires more memory than this environment provides; use a larger environment")
         import torch
         from huggingface_hub import snapshot_download
         from transformers import AutoProcessor, Qwen3VLForConditionalGeneration
         config["packages"] = {n: importlib.metadata.version(n) for n in
                               ("torch", "transformers", "av", "Pillow")}
+        if args.device == "cuda":
+            if not torch.cuda.is_available():
+                raise RuntimeError("CUDA unavailable: install CUDA PyTorch and check NVIDIA driver")
+            config["gpu_name"] = torch.cuda.get_device_name(0)
+            config["gpu_total_bytes"] = torch.cuda.get_device_properties(0).total_memory
+            atomic_json(folder / "run.json", config)
         torch.manual_seed(0)
         torch.set_num_threads(args.threads)
         started = time.perf_counter()
@@ -158,6 +169,9 @@ def main():
         if args.dtype == "int8-dynamic":
             config["quantized_linear_layers"] = quantize_text_linear_layers(engine)
             config["quantization"] = "dynamic qint8 text decoder linears and lm_head; float32 elsewhere; fbgemm"
+        engine.to(args.device)
+        if args.device == "cuda":
+            torch.cuda.synchronize()
         config["model_load_seconds"] = time.perf_counter() - started
         config["status"] = "running"
         atomic_json(folder / "run.json", config)
@@ -179,16 +193,22 @@ def main():
                 extraction_seconds = time.perf_counter() - started
                 # RSS samples include model and processor; not incremental per-clip memory.
                 rss = [memory_rss()]
+                if args.device == "cuda":
+                    torch.cuda.synchronize()
+                    torch.cuda.reset_peak_memory_stats()
                 started = time.perf_counter()
                 inputs = processor.apply_chat_template(
                     messages, tokenize=True, add_generation_prompt=True,
                     return_dict=True, return_tensors="pt", padding=True)
+                inputs = inputs.to(args.device)
                 rss.append(memory_rss())
                 with torch.inference_mode():
                     outputs = engine.generate(**inputs, max_new_tokens=260, do_sample=False)
                 rss.append(memory_rss())
                 raw_outputs = processor.batch_decode(
                     outputs[:, inputs["input_ids"].shape[1]:], skip_special_tokens=True)
+                if args.device == "cuda":
+                    torch.cuda.synchronize()
                 seconds = time.perf_counter() - started
                 batch_id = f"{mode}-{offset:03d}"
                 for clip, frames, raw in zip(batch, prepared, raw_outputs):
@@ -198,7 +218,7 @@ def main():
                     for index, (timestamp, image) in enumerate(frames):
                         path = evidence_dir / f"frame-{index}.png"
                         image.save(path)
-                        evidence.append({"time": timestamp, "file": str(path.relative_to(folder)),
+                        evidence.append({"time": timestamp, "file": path.relative_to(folder).as_posix(),
                                          "sha256": sha256(path), "size": list(image.size)})
                         image.close()
                     result = normalize(raw) | {
@@ -210,6 +230,8 @@ def main():
                         "batch_inference_seconds": seconds,
                         "amortized_inference_seconds": seconds / len(batch),
                         "rss_sample_max_bytes": available_max(rss),
+                        "gpu_peak_allocated_bytes": torch.cuda.max_memory_allocated() if args.device == "cuda" else None,
+                        "gpu_peak_reserved_bytes": torch.cuda.max_memory_reserved() if args.device == "cuda" else None,
                         "memory_note": "Max of three process RSS samples, not true peak or per-clip memory.",
                     }
                     atomic_json(folder / mode / (clip["id"] + ".json"), result)
