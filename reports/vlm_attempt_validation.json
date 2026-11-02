@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-30",
+  "full_check": {
+    "command": "AICAFE_PYTHON=python bash scripts/check_cloud.sh",
+    "python_tests": 22,
+    "node_tests": 9,
+    "exit_code": 0,
+    "server_and_64_samples": "passed"
+  },
+  "subsequent_check": {
+    "command": "python -m unittest discover -s tests -p test_compare_vlm.py -v",
+    "tests": 6,
+    "new_tests": 1,
+    "exit_code": 0
+  },
+  "unique_python_tests": 23,
+  "attempts": [
+    {
+      "run_id": "vlm-paired-20261030-01",
+      "status": "interrupted",
+      "completed_inferences": 0
+    },
+    {
+      "run_id": "vlm-paired-20261030-bf16-b1",
+      "status": "interrupted",
+      "completed_inferences": 0
+    },
+    {
+      "run_id": "vlm-paired-20261030-fp32",
+      "status": "failed",
+      "completed_inferences": 0
+    },
+    {
+      "run_id": "vlm-paired-20261030-int8",
+      "status": "interrupted",
+      "completed_inferences": 0
+    }
+  ],
+  "memory_limit_bytes": 8589934592,
+  "completed_vlm_outputs": 0,
+  "recognition_improvement_measured": false
+}

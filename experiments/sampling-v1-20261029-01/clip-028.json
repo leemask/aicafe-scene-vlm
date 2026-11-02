@@ -1,0 +1,165 @@
+{
+  "clip_id": "meva-04-05",
+  "input_video_sha256": "de17408793bb62ce99b2e69ac9374449a1cb4ea5532e8c72ad08ee54ec514d2a",
+  "probe_seconds": 0.25988071099709487,
+  "probes": [
+    {
+      "time": 0.0,
+      "score": 0.0
+    },
+    {
+      "time": 0.5333333333333333,
+      "score": 0.00968954248366013
+    },
+    {
+      "time": 1.0,
+      "score": 0.006531862745098039
+    },
+    {
+      "time": 1.5333333333333334,
+      "score": 0.007491830065359477
+    },
+    {
+      "time": 2.0,
+      "score": 0.00891748366013072
+    },
+    {
+      "time": 2.533333333333333,
+      "score": 0.003476307189542484
+    },
+    {
+      "time": 3.0,
+      "score": 0.0022630718954248365
+    },
+    {
+      "time": 3.533333333333333,
+      "score": 0.0009436274509803922
+    },
+    {
+      "time": 4.0,
+      "score": 0.0020302287581699346
+    },
+    {
+      "time": 4.533333333333333,
+      "score": 0.002990196078431372
+    },
+    {
+      "time": 5.0,
+      "score": 0.0034068627450980393
+    },
+    {
+      "time": 5.533333333333333,
+      "score": 0.0010171568627450982
+    },
+    {
+      "time": 6.0,
+      "score": 0.0010539215686274509
+    },
+    {
+      "time": 6.533333333333333,
+      "score": 0.00025326797385620916
+    },
+    {
+      "time": 7.0,
+      "score": 0.0
+    },
+    {
+      "time": 7.533333333333333,
+      "score": 0.001119281045751634
+    },
+    {
+      "time": 8.0,
+      "score": 0.0004084967320261438
+    },
+    {
+      "time": 8.533333333333333,
+      "score": 0.0007516339869281046
+    },
+    {
+      "time": 9.0,
+      "score": 0.0026633986928104574
+    },
+    {
+      "time": 9.533333333333333,
+      "score": 0.007193627450980392
+    },
+    {
+      "time": 10.0,
+      "score": 0.007651143790849673
+    },
+    {
+      "time": 10.533333333333333,
+      "score": 0.004840686274509804
+    },
+    {
+      "time": 11.0,
+      "score": 0.0035130718954248367
+    },
+    {
+      "time": 11.533333333333333,
+      "score": 0.006470588235294118
+    }
+  ],
+  "modes": {
+    "uniform3": {
+      "requested_frames": 3,
+      "actual_frames": 3,
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.22545376699781627,
+      "reference_interval_coverage": [
+        {
+          "activity": "Unload_Vehicle",
+          "start": 9.533,
+          "end": 11.333,
+          "with_sample": true
+        }
+      ]
+    },
+    "uniform6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        3.0,
+        5.0,
+        7.0,
+        9.0,
+        11.0
+      ],
+      "selection_decode_seconds": 0.4047119520000706,
+      "reference_interval_coverage": [
+        {
+          "activity": "Unload_Vehicle",
+          "start": 9.533,
+          "end": 11.333,
+          "with_sample": true
+        }
+      ]
+    },
+    "hybrid6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        0.5333333333333333,
+        2.0,
+        4.0,
+        6.0,
+        10.0,
+        11.533333333333333
+      ],
+      "selection_decode_seconds": 0.3692172599985497,
+      "reference_interval_coverage": [
+        {
+          "activity": "Unload_Vehicle",
+          "start": 9.533,
+          "end": 11.333,
+          "with_sample": true
+        }
+      ]
+    }
+  }
+}

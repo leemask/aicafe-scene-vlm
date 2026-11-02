@@ -1,0 +1,165 @@
+{
+  "clip_id": "meva-02-04",
+  "input_video_sha256": "f65099f480f010705c91194481da13d7c14b54a3f215aed32fa43cc55ff10252",
+  "probe_seconds": 0.24050949000229593,
+  "probes": [
+    {
+      "time": 0.0,
+      "score": 0.0
+    },
+    {
+      "time": 0.5333333333333333,
+      "score": 0.002136437908496732
+    },
+    {
+      "time": 1.0,
+      "score": 0.006352124183006536
+    },
+    {
+      "time": 1.5333333333333334,
+      "score": 0.004477124183006536
+    },
+    {
+      "time": 2.0,
+      "score": 0.00886437908496732
+    },
+    {
+      "time": 2.533333333333333,
+      "score": 0.004007352941176471
+    },
+    {
+      "time": 3.0,
+      "score": 0.0026062091503267974
+    },
+    {
+      "time": 3.533333333333333,
+      "score": 0.0010620915032679738
+    },
+    {
+      "time": 4.0,
+      "score": 0.004133986928104575
+    },
+    {
+      "time": 4.533333333333333,
+      "score": 0.0016625816993464052
+    },
+    {
+      "time": 5.0,
+      "score": 0.0020302287581699346
+    },
+    {
+      "time": 5.533333333333333,
+      "score": 0.0010294117647058824
+    },
+    {
+      "time": 6.0,
+      "score": 0.0036233660130718954
+    },
+    {
+      "time": 6.533333333333333,
+      "score": 0.0016258169934640523
+    },
+    {
+      "time": 7.0,
+      "score": 0.00213235294117647
+    },
+    {
+      "time": 7.533333333333333,
+      "score": 0.0016299019607843139
+    },
+    {
+      "time": 8.0,
+      "score": 4.901960784313726e-05
+    },
+    {
+      "time": 8.533333333333333,
+      "score": 0.0013602941176470587
+    },
+    {
+      "time": 9.0,
+      "score": 0.0032516339869281046
+    },
+    {
+      "time": 9.533333333333333,
+      "score": 0.0007148692810457516
+    },
+    {
+      "time": 10.0,
+      "score": 0.0008864379084967321
+    },
+    {
+      "time": 10.533333333333333,
+      "score": 0.0018709150326797386
+    },
+    {
+      "time": 11.0,
+      "score": 0.0008455882352941177
+    },
+    {
+      "time": 11.533333333333333,
+      "score": 0.0037867647058823528
+    }
+  ],
+  "modes": {
+    "uniform3": {
+      "requested_frames": 3,
+      "actual_frames": 3,
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.21939279200159945,
+      "reference_interval_coverage": [
+        {
+          "activity": "Object_Transfer",
+          "start": 3.3,
+          "end": 5.633,
+          "with_sample": false
+        }
+      ]
+    },
+    "uniform6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        3.0,
+        5.0,
+        7.0,
+        9.0,
+        11.0
+      ],
+      "selection_decode_seconds": 0.4217762770022091,
+      "reference_interval_coverage": [
+        {
+          "activity": "Object_Transfer",
+          "start": 3.3,
+          "end": 5.633,
+          "with_sample": true
+        }
+      ]
+    },
+    "hybrid6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        2.0,
+        4.0,
+        6.0,
+        8.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.4197783670024364,
+      "reference_interval_coverage": [
+        {
+          "activity": "Object_Transfer",
+          "start": 3.3,
+          "end": 5.633,
+          "with_sample": true
+        }
+      ]
+    }
+  }
+}

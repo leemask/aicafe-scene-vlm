@@ -1,0 +1,165 @@
+{
+  "clip_id": "meva-01-04",
+  "input_video_sha256": "0e1684680b6ad169ca1bb02035d1b1e70de8ed06741e5a11047615617cb5732c",
+  "probe_seconds": 0.38008065500252997,
+  "probes": [
+    {
+      "time": 0.0,
+      "score": 0.0
+    },
+    {
+      "time": 0.5333333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 1.0,
+      "score": 0.0
+    },
+    {
+      "time": 1.5333333333333334,
+      "score": 0.0
+    },
+    {
+      "time": 2.0,
+      "score": 0.0
+    },
+    {
+      "time": 2.533333333333333,
+      "score": 0.0
+    },
+    {
+      "time": 3.0,
+      "score": 0.012406045751633987
+    },
+    {
+      "time": 3.533333333333333,
+      "score": 0.00627859477124183
+    },
+    {
+      "time": 4.0,
+      "score": 0.007009803921568628
+    },
+    {
+      "time": 4.533333333333333,
+      "score": 0.024240196078431375
+    },
+    {
+      "time": 5.0,
+      "score": 0.052185457516339864
+    },
+    {
+      "time": 5.533333333333333,
+      "score": 0.11385212418300653
+    },
+    {
+      "time": 6.0,
+      "score": 0.14622549019607844
+    },
+    {
+      "time": 6.533333333333333,
+      "score": 0.1460702614379085
+    },
+    {
+      "time": 7.0,
+      "score": 0.15990604575163397
+    },
+    {
+      "time": 7.533333333333333,
+      "score": 0.2302124183006536
+    },
+    {
+      "time": 8.0,
+      "score": 0.17786356209150325
+    },
+    {
+      "time": 8.533333333333333,
+      "score": 0.10869281045751633
+    },
+    {
+      "time": 9.0,
+      "score": 0.07704248366013071
+    },
+    {
+      "time": 9.533333333333333,
+      "score": 0.03441584967320261
+    },
+    {
+      "time": 10.0,
+      "score": 0.020477941176470588
+    },
+    {
+      "time": 10.533333333333333,
+      "score": 0.000747549019607843
+    },
+    {
+      "time": 11.0,
+      "score": 0.0
+    },
+    {
+      "time": 11.533333333333333,
+      "score": 0.0
+    }
+  ],
+  "modes": {
+    "uniform3": {
+      "requested_frames": 3,
+      "actual_frames": 3,
+      "frame_times": [
+        2.0,
+        6.0,
+        10.0
+      ],
+      "selection_decode_seconds": 0.3371051369977067,
+      "reference_interval_coverage": [
+        {
+          "activity": "Enter_Facility",
+          "start": 5.367,
+          "end": 7.7,
+          "with_sample": true
+        }
+      ]
+    },
+    "uniform6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        1.0,
+        3.0,
+        5.0,
+        7.0,
+        9.0,
+        11.0
+      ],
+      "selection_decode_seconds": 0.5640989100029401,
+      "reference_interval_coverage": [
+        {
+          "activity": "Enter_Facility",
+          "start": 5.367,
+          "end": 7.7,
+          "with_sample": true
+        }
+      ]
+    },
+    "hybrid6": {
+      "requested_frames": 6,
+      "actual_frames": 6,
+      "frame_times": [
+        2.0,
+        5.0,
+        6.0,
+        7.533333333333333,
+        8.533333333333333,
+        10.0
+      ],
+      "selection_decode_seconds": 0.6311509850020229,
+      "reference_interval_coverage": [
+        {
+          "activity": "Enter_Facility",
+          "start": 5.367,
+          "end": 7.7,
+          "with_sample": true
+        }
+      ]
+    }
+  }
+}

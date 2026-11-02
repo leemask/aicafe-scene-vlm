@@ -1,0 +1,24 @@
+{
+  "run_id": "sampling-v1-20261029-01",
+  "modes": {
+    "uniform3": {
+      "clips": 64,
+      "frames": 192,
+      "intervals": 14,
+      "with_sample": 8
+    },
+    "uniform6": {
+      "clips": 64,
+      "frames": 384,
+      "intervals": 14,
+      "with_sample": 13
+    },
+    "hybrid6": {
+      "clips": 64,
+      "frames": 384,
+      "intervals": 14,
+      "with_sample": 12
+    }
+  },
+  "note": "Timestamp coverage of partial clip-level reference intervals, NOT recognition accuracy or recall. Overlapping clips can duplicate source events. Missing annotations do not prove absence. Timings are single sequential measurements affected by caching; hybrid requires probe_seconds in addition to selection."
+}
